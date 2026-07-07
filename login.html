@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
+
+    <meta
+        name="theme-color"
+        content="#07090d"
+    >
+
+    <title>TELVIQO Admin Login</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body class="login-page">
+
+    <main class="login-shell">
+
+        <section class="login-card">
+
+            <a
+                class="login-brand"
+                href="index.html"
+                aria-label="TELVIQO Home"
+            >
+                <span class="login-brand-mark">
+                    T
+                </span>
+
+                <div>
+                    <strong>
+                        TELVIQO
+                    </strong>
+
+                    <span>
+                        DEVICE SERVICES
+                    </span>
+                </div>
+            </a>
+
+
+            <div class="login-heading">
+
+                <span class="login-eyebrow">
+                    PRIVATE ACCESS
+                </span>
+
+                <h1>
+                    Admin Panel
+                </h1>
+
+                <p>
+                    Sign in to manage TELVIQO.
+                </p>
+
+            </div>
+
+
+            <form
+                class="login-form"
+                id="loginForm"
+                autocomplete="off"
+            >
+
+                <label class="login-field">
+
+                    <span>
+                        Username
+                    </span>
+
+                    <input
+                        id="loginUsername"
+                        name="username"
+                        type="text"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </label>
+
+
+                <label class="login-field">
+
+                    <span>
+                        Password
+                    </span>
+
+                    <div class="login-password-field">
+
+                        <input
+                            id="loginPassword"
+                            name="password"
+                            type="password"
+                            placeholder="Enter password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            class="login-password-toggle"
+                            type="button"
+                            data-toggle-password="loginPassword"
+                            aria-label="Show password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </label>
+
+
+                <div
+                    class="login-message"
+                    id="loginMessage"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    class="login-submit"
+                    id="loginSubmit"
+                    type="submit"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+
+            <div class="login-security">
+
+                <span class="login-security-dot"></span>
+
+                <p>
+                    TELVIQO private administration area.
+                </p>
+
+            </div>
+
+
+            <a
+                class="login-back"
+                href="index.html"
+            >
+                ← Back to TELVIQO
+            </a>
+
+        </section>
+
+
+        <section class="login-visual">
+
+            <div class="login-visual-grid"></div>
+
+
+            <div class="login-visual-content">
+
+                <span>
+                    TELVIQO / ADMIN
+                </span>
+
+                <h2>
+                    Manage the business.
+                    <br>
+                    Build the future.
+                </h2>
+
+                <p>
+                    Website content, device services,
+                    repair work, customer reviews and
+                    quote requests — all in one place.
+                </p>
+
+
+                <div class="login-visual-stats">
+
+                    <div>
+                        <strong>
+                            01
+                        </strong>
+
+                        <span>
+                            WEBSITE
+                        </span>
+                    </div>
+
+
+                    <div>
+                        <strong>
+                            02
+                        </strong>
+
+                        <span>
+                            SERVICES
+                        </span>
+                    </div>
+
+
+                    <div>
+                        <strong>
+                            03
+                        </strong>
+
+                        <span>
+                            CUSTOMERS
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="login-visual-footer">
+
+                <span>
+                    FOUNDED BY DANYLO TARAN
+                </span>
+
+                <span>
+                    CALIFORNIA
+                </span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.TELVIQO_SUPABASE_URL = "https://dxzyiofznaxtyyobssgp.supabase.co";
+        window.TELVIQO_SUPABASE_ANON_KEY = "sb_publishable_LTb_TH7hO3BW2qjGAwKGXA_4qVui-18";
+    </script>
+    <script src="auth.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
+
+    <title>TELVIQO Admin Panel</title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+</head>
+
+
+<body class="admin-body">
+
+    <!-- ======================================================
+         MOBILE HEADER
+         ====================================================== -->
+
+    <header class="admin-mobile-header">
+
+        <button
+            class="admin-mobile-menu-button"
+            type="button"
+            data-admin-menu
+            aria-label="Open admin menu"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+
+        <a
+            class="admin-mobile-logo"
+            href="admin.html"
+        >
+            TELVIQO
+        </a>
+
+
+        <button
+            class="admin-mobile-view-button"
+            type="button"
+            data-view-website
+        >
+            View
+        </button>
+
+    </header>
+
+
+
+    <!-- ======================================================
+         ADMIN LAYOUT
+         ====================================================== -->
+
+    <div class="admin-layout">
+
+
+        <!-- ==================================================
+             SIDEBAR
+             ================================================== -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-sidebar-top">
+
+                <a
+                    class="admin-brand"
+                    href="admin.html"
+                >
+                    <span class="admin-brand-mark">
+                        T
+                    </span>
+
+                    <div>
+                        <strong>
+                            TELVIQO
+                        </strong>
+
+                        <span>
+                            ADMIN PANEL
+                        </span>
+                    </div>
+                </a>
+
+
+                <div class="admin-owner-card">
+
+                    <div class="admin-owner-avatar">
+                        DT
+                    </div>
+
+                    <div class="admin-owner-information">
+
+                        <strong>
+                            Danylo Taran
+                        </strong>
+
+                        <span>
+                            Founder / Owner
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==============================================
+                 NAVIGATION
+                 ============================================== -->
+
+            <nav class="admin-navigation">
+
+                <span class="admin-navigation-label">
+                    MANAGEMENT
+                </span>
+
+
+                <button
+                    class="admin-navigation-item active"
+                    type="button"
+                    data-admin-nav="dashboard"
+                >
+                    <span class="admin-navigation-icon">
+                        ◫
+                    </span>
+
+                    <span>
+                        Dashboard
+                    </span>
+                </button>
+
+
+                <button
+                    class="admin-navigation-item"
+                    type="button"
+                    data-admin-nav="content"
+                >
+                    <span class="admin-navigation-icon">
+                        Aa
+                    </span>
+
+                    <span>
+                        Website Content
+                    </span>
+                </button>
+
+
+                <button
+                    class="admin-navigation-item"
+                    type="button"
+                    data-admin-nav="services"
+                >
+                    <span class="admin-navigation-icon">
+                        ◇
+                    </span>
+
+                    <span>
+                        Services
+                    </span>
+                </button>
+
+
+                <button
+                    class="admin-navigation-item"
+                    type="button"
+                    data-admin-nav="projects"
+                >
+                    <span class="admin-navigation-icon">
+                        ▣
+                    </span>
+
+                    <span>
+                        My Work
+                    </span>
+                </button>
+
+
+                <button
+                    class="admin-navigation-item"
+                    type="button"
+                    data-admin-nav="reviews"
+                >
+                    <span class="admin-navigation-icon">
+                        ★
+                    </span>
+
+                    <span>
+                        Reviews
+                    </span>
+                </button>
+
+
+                <button
+                    class="admin-navigation-item"
+                    type="button"
+                    data-admin-nav="requests"
+                >
+                    <span class="admin-navigation-icon">
+                        ↗
+                    </span>
+
+                    <span>
+                        Quote Requests
+                    </span>
+
+                    <span
+                        class="admin-navigation-count"
+                        data-admin-stat="newRequests"
+                    >
+                        0
+                    </span>
+                </button>
+
+
+                <button
+                    class="admin-navigation-item"
+                    type="button"
+                    data-admin-nav="settings"
+                >
+                    <span class="admin-navigation-icon">
+                        ⚙
+                    </span>
+
+                    <span>
+                        Settings
+                    </span>
+                </button>
+
+            </nav>
+
+
+
+            <!-- ==============================================
+                 SIDEBAR BOTTOM
+                 ============================================== -->
+
+            <div class="admin-sidebar-bottom">
+
+                <div class="admin-site-status">
+
+                    <span class="admin-site-status-dot"></span>
+
+                    <div>
+                        <strong>
+                            Website Online
+                        </strong>
+
+                        <span>
+                            TELVIQO
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="admin-sidebar-button"
+                    type="button"
+                    data-view-website
+                >
+                    View Website
+                    <span>↗</span>
+                </button>
+
+
+                <button
+                    class="admin-sidebar-button admin-logout-button"
+                    type="button"
+                    data-admin-logout
+                >
+                    Sign Out
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ==================================================
+             MAIN CONTENT
+             ================================================== -->
+
+        <main class="admin-main">
+
+
+            <!-- ==============================================
+                 DASHBOARD
+                 ============================================== -->
+
+            <section
+                class="admin-section active"
+                data-admin-section="dashboard"
+            >
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="admin-page-eyebrow">
+                            TELVIQO ADMIN
+                        </span>
+
+                        <h1>
+                            Dashboard
+                        </h1>
+
+                        <p>
+                            Manage your website, projects,
+                            reviews and customer requests.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="admin-primary-button"
+                        type="button"
+                        data-view-website
+                    >
+                        View Website ↗
+                    </button>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     DASHBOARD STATS
+                     ========================================== -->
+
+                <div class="admin-stat-grid">
+
+                    <article class="admin-stat-card">
+
+                        <span>
+                            MY WORK
+                        </span>
+
+                        <strong
+                            data-admin-stat="projects"
+                        >
+                            0
+                        </strong>
+
+                        <p>
+                            Projects
+                        </p>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span>
+                            REVIEWS
+                        </span>
+
+                        <strong
+                            data-admin-stat="reviews"
+                        >
+                            0
+                        </strong>
+
+                        <p>
+                            Customer reviews
+                        </p>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span>
+                            REQUESTS
+                        </span>
+
+                        <strong
+                            data-admin-stat="requests"
+                        >
+                            0
+                        </strong>
+
+                        <p>
+                            Total requests
+                        </p>
+
+                    </article>
+
+
+                    <article class="admin-stat-card admin-stat-card-highlight">
+
+                        <span>
+                            NEW
+                        </span>
+
+                        <strong
+                            data-admin-stat="newRequests"
+                        >
+                            0
+                        </strong>
+
+                        <p>
+                            New requests
+                        </p>
+
+                    </article>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     QUICK ACTIONS
+                     ========================================== -->
+
+                <div class="admin-dashboard-grid">
+
+                    <article class="admin-panel-card">
+
+                        <div class="admin-card-header">
+
+                            <div>
+
+                                <span>
+                                    QUICK ACTIONS
+                                </span>
+
+                                <h2>
+                                    Manage TELVIQO
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-quick-actions">
+
+                            <button
+                                type="button"
+                                data-new-project
+                            >
+                                <strong>
+                                    +
+                                </strong>
+
+                                <div>
+                                    <span>
+                                        Add Project
+                                    </span>
+
+                                    <small>
+                                        Upload new repair work
+                                    </small>
+                                </div>
+                            </button>
+
+
+                            <button
+                                type="button"
+                                data-open-admin-section="content"
+                            >
+                                <strong>
+                                    Aa
+                                </strong>
+
+                                <div>
+                                    <span>
+                                        Edit Website
+                                    </span>
+
+                                    <small>
+                                        Change website text
+                                    </small>
+                                </div>
+                            </button>
+
+
+                            <button
+                                type="button"
+                                data-open-admin-section="requests"
+                            >
+                                <strong>
+                                    ↗
+                                </strong>
+
+                                <div>
+                                    <span>
+                                        View Requests
+                                    </span>
+
+                                    <small>
+                                        Customer quote requests
+                                    </small>
+                                </div>
+                            </button>
+
+
+                            <button
+                                type="button"
+                                data-open-admin-section="reviews"
+                            >
+                                <strong>
+                                    ★
+                                </strong>
+
+                                <div>
+                                    <span>
+                                        Reviews
+                                    </span>
+
+                                    <small>
+                                        Manage customer reviews
+                                    </small>
+                                </div>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- ======================================
+                         RECENT ACTIVITY
+                         ====================================== -->
+
+                    <article class="admin-panel-card">
+
+                        <div class="admin-card-header">
+
+                            <div>
+
+                                <span>
+                                    ACTIVITY
+                                </span>
+
+                                <h2>
+                                    Recent Activity
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="admin-activity-list"
+                            id="recentActivity"
+                        ></div>
+
+                    </article>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     RECENT REQUESTS
+                     ========================================== -->
+
+                <article class="admin-panel-card admin-full-card">
+
+                    <div class="admin-card-header">
+
+                        <div>
+
+                            <span>
+                                CUSTOMERS
+                            </span>
+
+                            <h2>
+                                Recent Quote Requests
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            class="admin-text-button"
+                            type="button"
+                            data-open-admin-section="requests"
+                        >
+                            View all →
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="recent-requests"
+                        id="recentRequests"
+                    ></div>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 WEBSITE CONTENT
+                 ============================================== -->
+
+            <section
+                class="admin-section"
+                data-admin-section="content"
+            >
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="admin-page-eyebrow">
+                            WEBSITE
+                        </span>
+
+                        <h1>
+                            Website Content
+                        </h1>
+
+                        <p>
+                            Change website text without editing code.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="admin-primary-button"
+                        type="button"
+                        data-save-content
+                    >
+                        Save All Changes
+                    </button>
+
+                </div>
+
+                <div class="admin-language-tabs" role="tablist" aria-label="Website language editor">
+                    <button class="admin-language-tab active" type="button" data-content-language="en" role="tab" aria-selected="true">English</button>
+                    <button class="admin-language-tab" type="button" data-content-language="ru" role="tab" aria-selected="false">Русский</button>
+                    <button class="admin-language-tab" type="button" data-content-language="uk" role="tab" aria-selected="false">Українська</button>
+                    <button class="admin-language-tab" type="button" data-content-language="ro" role="tab" aria-selected="false">Română</button>
+                </div>
+
+                <div class="admin-language-hint">
+                    Switch language tabs to edit the public text for each version of the site.
+                </div>
+
+
+                <!-- ==========================================
+                     HERO CONTENT
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            01
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Hero Section
+                            </h2>
+
+                            <p>
+                                The first section customers see.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Small Label
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="heroEyebrow"
+                                data-content-field-lang="heroEyebrow"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Main Title
+                            </span>
+
+                            <textarea
+                                rows="3"
+                                data-content-field="heroTitle"
+                                data-content-field-lang="heroTitle"
+                            ></textarea>
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Description
+                            </span>
+
+                            <textarea
+                                rows="4"
+                                data-content-field="heroDescription"
+                                data-content-field-lang="heroDescription"
+                            ></textarea>
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Primary Button
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="heroPrimaryButton"
+                                data-content-field-lang="heroPrimaryButton"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Secondary Button
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="heroSecondaryButton"
+                                data-content-field-lang="heroSecondaryButton"
+                            >
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     ABOUT CONTENT
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            02
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                About Me
+                            </h2>
+
+                            <p>
+                                Your story and founder information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field">
+
+                            <span>
+                                Section Label
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="aboutLabel"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Section Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="aboutTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                About Me Text
+                            </span>
+
+                            <textarea
+                                rows="10"
+                                data-content-field="aboutText"
+                            ></textarea>
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Owner Name
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="ownerCardTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Owner Role
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="ownerCardRole"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Age Text
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="ownerCardAge"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Location Text
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="ownerCardLocation"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Future Goal
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="ownerCardFuture"
+                            >
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     SERVICES CONTENT
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            03
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Services Section
+                            </h2>
+
+                            <p>
+                                Main text above your services.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field">
+
+                            <span>
+                                Label
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="servicesLabel"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="servicesTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Description
+                            </span>
+
+                            <textarea
+                                rows="4"
+                                data-content-field="servicesDescription"
+                            ></textarea>
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     PROJECTS CONTENT
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            04
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                My Work Section
+                            </h2>
+
+                            <p>
+                                Text above your repair projects.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field">
+
+                            <span>
+                                Label
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="projectsLabel"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="projectsTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Description
+                            </span>
+
+                            <textarea
+                                rows="4"
+                                data-content-field="projectsDescription"
+                            ></textarea>
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     REVIEWS CONTENT
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            05
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Reviews Section
+                            </h2>
+
+                            <p>
+                                Customer review section text.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field">
+
+                            <span>
+                                Label
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="reviewsLabel"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="reviewsTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Description
+                            </span>
+
+                            <textarea
+                                rows="4"
+                                data-content-field="reviewsDescription"
+                            ></textarea>
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     QUOTE CONTENT
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            06
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Request a Quote
+                            </h2>
+
+                            <p>
+                                Quote form section text.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field">
+
+                            <span>
+                                Label
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="quoteLabel"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="quoteTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Description
+                            </span>
+
+                            <textarea
+                                rows="4"
+                                data-content-field="quoteDescription"
+                            ></textarea>
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     PAYMENT CONTENT
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            07
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Payment Section
+                            </h2>
+
+                            <p>
+                                Cash App payment section.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field">
+
+                            <span>
+                                Label
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="paymentLabel"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="paymentTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Description
+                            </span>
+
+                            <textarea
+                                rows="4"
+                                data-content-field="paymentDescription"
+                            ></textarea>
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Footer Text
+                            </span>
+
+                            <input
+                                type="text"
+                                data-content-field="footerText"
+                            >
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+                <div class="admin-save-bar">
+
+                    <div>
+
+                        <strong>
+                            Finished editing?
+                        </strong>
+
+                        <span>
+                            Save your website changes.
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="admin-primary-button"
+                        type="button"
+                        data-save-content
+                    >
+                        Save All Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 SERVICES
+                 ============================================== -->
+
+            <section
+                class="admin-section"
+                data-admin-section="services"
+            >
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="admin-page-eyebrow">
+                            WEBSITE
+                        </span>
+
+                        <h1>
+                            Services
+                        </h1>
+
+                        <p>
+                            Add, edit, hide or delete services.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="admin-primary-button"
+                        type="button"
+                        data-new-service
+                    >
+                        + Add Service
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="admin-list"
+                    id="adminServicesList"
+                ></div>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 MY WORK / PROJECTS
+                 ============================================== -->
+
+            <section
+                class="admin-section"
+                data-admin-section="projects"
+            >
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="admin-page-eyebrow">
+                            PORTFOLIO
+                        </span>
+
+                        <h1>
+                            My Work
+                        </h1>
+
+                        <p>
+                            Upload real TELVIQO repair projects.
+                            Every project has its own photo.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="admin-primary-button"
+                        type="button"
+                        data-new-project
+                    >
+                        + Add Project
+                    </button>
+
+                </div>
+
+
+                <div class="admin-information-banner">
+
+                    <strong>
+                        Your real work matters.
+                    </strong>
+
+                    <p>
+                        Add your phone repair photos here.
+                        Each project image is stored separately.
+                        Changing one project does not change another.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="admin-projects-grid"
+                    id="adminProjectsList"
+                ></div>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 REVIEWS
+                 ============================================== -->
+
+            <section
+                class="admin-section"
+                data-admin-section="reviews"
+            >
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="admin-page-eyebrow">
+                            CUSTOMERS
+                        </span>
+
+                        <h1>
+                            Reviews
+                        </h1>
+
+                        <p>
+                            Manage customer reviews shown on TELVIQO.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-information-banner">
+
+                    <strong>
+                        Review control
+                    </strong>
+
+                    <p>
+                        You can hide inappropriate reviews and mark
+                        reviews as verified after confirming the customer.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="admin-reviews-grid"
+                    id="adminReviewsList"
+                ></div>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 QUOTE REQUESTS
+                 ============================================== -->
+
+            <section
+                class="admin-section"
+                data-admin-section="requests"
+            >
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="admin-page-eyebrow">
+                            CUSTOMERS
+                        </span>
+
+                        <h1>
+                            Quote Requests
+                        </h1>
+
+                        <p>
+                            View device information and customer requests.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="admin-requests-list"
+                    id="adminRequestsList"
+                ></div>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 SETTINGS
+                 ============================================== -->
+
+            <section
+                class="admin-section"
+                data-admin-section="settings"
+            >
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="admin-page-eyebrow">
+                            TELVIQO
+                        </span>
+
+                        <h1>
+                            Settings
+                        </h1>
+
+                        <p>
+                            Manage business information, social links,
+                            Cash App and website settings.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     BUSINESS SETTINGS
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            01
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Business Information
+                            </h2>
+
+                            <p>
+                                Main TELVIQO business details.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Maintenance Mode
+                            </span>
+
+                            <select
+                                data-setting-field="maintenanceMode"
+                            >
+                                <option value="false">Disabled</option>
+                                <option value="true">Enabled</option>
+                            </select>
+
+                        </label>
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Maintenance Message
+                            </span>
+
+                            <textarea
+                                data-setting-field="maintenanceMessage"
+                                rows="5"
+                                placeholder="Enter a message shown to visitors while maintenance is active"
+                            ></textarea>
+
+                        </label>
+
+                        <label class="admin-field">
+
+                            <span>
+                                Business Name
+                            </span>
+
+                            <input
+                                type="text"
+                                data-setting-field="businessName"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Business Type
+                            </span>
+
+                            <input
+                                type="text"
+                                data-setting-field="businessType"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Owner Name
+                            </span>
+
+                            <input
+                                type="text"
+                                data-setting-field="ownerName"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Owner Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-setting-field="ownerTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Future Title
+                            </span>
+
+                            <input
+                                type="text"
+                                data-setting-field="futureTitle"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Age
+                            </span>
+
+                            <input
+                                type="number"
+                                min="1"
+                                max="120"
+                                data-setting-field="age"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Location
+                            </span>
+
+                            <input
+                                type="text"
+                                data-setting-field="location"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Devices Repaired
+                            </span>
+
+                            <input
+                                type="number"
+                                min="0"
+                                data-setting-field="repairedDevices"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-checkbox-field">
+
+                            <input
+                                type="checkbox"
+                                data-setting-field="homeBased"
+                            >
+
+                            <span>
+                                Home-based business
+                            </span>
+
+                        </label>
+
+
+                        <label class="admin-checkbox-field">
+
+                            <input
+                                type="checkbox"
+                                data-setting-field="acceptingRequests"
+                            >
+
+                            <span>
+                                Accepting quote requests
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        class="admin-primary-button"
+                        type="button"
+                        data-save-settings
+                    >
+                        Save Business Settings
+                    </button>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     SOCIAL LINKS
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            02
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Social Media & Contact
+                            </h2>
+
+                            <p>
+                                TikTok, Instagram, email and Cash App.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-form-grid">
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                TikTok URL
+                            </span>
+
+                            <input
+                                type="url"
+                                data-social-field="tiktok"
+                                placeholder="TikTok profile URL"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Instagram URL
+                            </span>
+
+                            <input
+                                type="url"
+                                data-social-field="instagram"
+                                placeholder="Instagram profile URL"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Contact Email
+                            </span>
+
+                            <input
+                                type="email"
+                                data-social-field="email"
+                                placeholder="Email address"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field admin-field-full">
+
+                            <span>
+                                Cash App Link
+                            </span>
+
+                            <input
+                                type="url"
+                                data-social-field="cashApp"
+                                placeholder="Cash App payment link"
+                            >
+
+                            <small>
+                                Add your Cash App payment link here.
+                                Do not add your Cash App password.
+                            </small>
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        class="admin-primary-button"
+                        type="button"
+                        data-save-social
+                    >
+                        Save Social Links
+                    </button>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     LANGUAGES
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            03
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Languages
+                            </h2>
+
+                            <p>
+                                Languages you speak with customers.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="admin-languages-list"
+                        id="adminLanguagesList"
+                    ></div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     BACKUP
+                     ========================================== -->
+
+                <article class="admin-editor-card">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            04
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Backup
+                            </h2>
+
+                            <p>
+                                Save a development copy of your website data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-backup-actions">
+
+                        <button
+                            class="admin-secondary-button"
+                            type="button"
+                            data-download-backup
+                        >
+                            Download Backup
+                        </button>
+
+
+                        <label class="admin-secondary-button">
+
+                            Import Backup
+
+                            <input
+                                type="file"
+                                accept=".json,application/json"
+                                data-import-backup
+                                hidden
+                            >
+
+                        </label>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ==========================================
+                     DANGER ZONE
+                     ========================================== -->
+
+                <article class="admin-editor-card admin-danger-zone">
+
+                    <div class="admin-editor-heading">
+
+                        <span>
+                            !
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Danger Zone
+                            </h2>
+
+                            <p>
+                                Reset website content to default values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="admin-danger-button"
+                        type="button"
+                        data-reset-content
+                    >
+                        Reset Website Content
+                    </button>
+
+                </article>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         SERVICE MODAL
+         ====================================================== -->
+
+    <div
+        class="admin-modal"
+        id="serviceModal"
+    >
+
+        <div class="admin-modal-overlay"></div>
+
+
+        <div class="admin-modal-window">
+
+            <div class="admin-modal-header">
+
+                <div>
+
+                    <span>
+                        TELVIQO SERVICE
+                    </span>
+
+                    <h2>
+                        Service Editor
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    data-close-admin-modal
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="serviceForm">
+
+                <label class="admin-field">
+
+                    <span>
+                        Service Title
+                    </span>
+
+                    <input
+                        id="serviceTitle"
+                        type="text"
+                        required
+                    >
+
+                </label>
+
+
+                <label class="admin-field">
+
+                    <span>
+                        Description
+                    </span>
+
+                    <textarea
+                        id="serviceDescription"
+                        rows="6"
+                        required
+                    ></textarea>
+
+                </label>
+
+
+                <label class="admin-field">
+
+                    <span>
+                        Button Text
+                    </span>
+
+                    <input
+                        id="serviceButtonText"
+                        type="text"
+                        value="Request a Quote"
+                    >
+
+                </label>
+
+
+                <label class="admin-checkbox-field">
+
+                    <input
+                        id="serviceActive"
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span>
+                        Show this service on website
+                    </span>
+
+                </label>
+
+
+                <button
+                    class="admin-primary-button admin-modal-submit"
+                    type="submit"
+                >
+                    Save Service
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         PROJECT MODAL
+         ====================================================== -->
+
+    <div
+        class="admin-modal"
+        id="projectModal"
+    >
+
+        <div class="admin-modal-overlay"></div>
+
+
+        <div class="admin-modal-window admin-modal-window-large">
+
+            <div class="admin-modal-header">
+
+                <div>
+
+                    <span>
+                        MY WORK
+                    </span>
+
+                    <h2>
+                        Project Editor
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    data-close-admin-modal
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="projectForm">
+
+                <div class="admin-project-editor-layout">
+
+
+                    <!-- ======================================
+                         PROJECT IMAGE
+                         ====================================== -->
+
+                    <div class="admin-project-image-editor">
+
+                        <div
+                            class="admin-project-image-preview"
+                            id="projectImagePreview"
+                        >
+
+                            <div class="admin-image-placeholder">
+                                Select a project image
+                            </div>
+
+                        </div>
+
+
+                        <label class="admin-upload-button">
+
+                            Choose Project Photo
+
+                            <input
+                                id="projectImage"
+                                type="file"
+                                accept="image/jpeg,image/png,image/webp"
+                                hidden
+                            >
+
+                        </label>
+
+
+                        <p>
+                            JPG, PNG or WEBP.
+                            Maximum 5 MB.
+                        </p>
+
+
+                        <strong>
+                            Each project uses its own photo.
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- ======================================
+                         PROJECT INFORMATION
+                         ====================================== -->
+
+                    <div class="admin-project-fields">
+
+                        <label class="admin-field">
+
+                            <span>
+                                Project Title
+                            </span>
+
+                            <input
+                                id="projectTitle"
+                                type="text"
+                                placeholder="Example: iPhone 13 Screen Repair"
+                                required
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Device
+                            </span>
+
+                            <input
+                                id="projectDevice"
+                                type="text"
+                                placeholder="Example: iPhone 13"
+                                required
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Service
+                            </span>
+
+                            <input
+                                id="projectService"
+                                type="text"
+                                placeholder="Example: Screen Replacement"
+                            >
+
+                        </label>
+
+
+                        <label class="admin-field">
+
+                            <span>
+                                Project Description
+                            </span>
+
+                            <textarea
+                                id="projectDescription"
+                                rows="7"
+                                placeholder="Describe what you repaired..."
+                            ></textarea>
+
+                        </label>
+
+
+                        <label class="admin-checkbox-field">
+
+                            <input
+                                id="projectVisible"
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span>
+                                Show project on TELVIQO website
+                            </span>
+
+                        </label>
+
+
+                        <button
+                            class="admin-primary-button admin-modal-submit"
+                            type="submit"
+                        >
+                            Save Project
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         REQUEST MODAL
+         ====================================================== -->
+
+    <div
+        class="admin-modal"
+        id="requestModal"
+    >
+
+        <div class="admin-modal-overlay"></div>
+
+
+        <div class="admin-modal-window admin-modal-window-large">
+
+            <div class="admin-modal-header">
+
+                <div>
+
+                    <span>
+                        CUSTOMER
+                    </span>
+
+                    <h2>
+                        Quote Request
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    data-close-admin-modal
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div id="requestDetails"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         ADMIN TOAST
+         ====================================================== -->
+
+    <div
+        class="admin-toast"
+        id="adminToast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+
+    <!-- ======================================================
+         JAVASCRIPT
+         IMPORTANT: SCRIPT ORDER
+         ====================================================== -->
+
+    <script src="database.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.TELVIQO_SUPABASE_URL = "https://dxzyiofznaxtyyobssgp.supabase.co";
+        window.TELVIQO_SUPABASE_ANON_KEY = "sb_publishable_LTb_TH7hO3BW2qjGAwKGXA_4qVui-18";
+        window.TELVIQO_QUOTE_REQUESTS_TABLE = "quote_requests";
+    </script>
+    <script src="auth.js"></script>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
