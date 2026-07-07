@@ -1514,115 +1514,265 @@ function deleteTELVIQOProject(id) {
    REVIEWS
    ============================================================ */
 
-function getTELVIQOReviews(
-    includeHidden = false
-) {
-    const reviews =
-        TELVIQO_DATABASE.reviews;
+let TELVIQO_REVIEW_SYNC_IN_PROGRESS = false;
 
-    const filteredReviews =
-        includeHidden
-            ? reviews
-            : reviews.filter(
-                function (review) {
-                    return (
-                        review.visible !== false
-                    );
-                }
-            );
 
-    return telviqoClone(
-        filteredReviews
+function getSupabaseReviewsTable() {
+    return (
+        window.TELVIQO_REVIEWS_TABLE ||
+        "reviews"
     );
 }
 
 
-async function createTELVIQOReview(data) {
-    if (
-        !data ||
-        typeof data !== "object"
-    ) {
+function normalizeTELVIQOReview(record) {
+    if (!record || typeof record !== "object") {
         return null;
     }
 
-    const name =
-        telviqoSafeString(
-            data.name
-        ).trim() || "Anonymous";
+    const hidden = telviqoSafeBoolean(
+        record.hidden,
+        telviqoSafeBoolean(
+            record.visible === false,
+            false
+        )
+    );
 
-    const message =
-        telviqoSafeString(
-            data.message
-        ).trim();
+    const name = telviqoSafeString(
+        record.customer_name ||
+        record.customerName ||
+        record.name
+    ).trim() || "Anonymous";
 
-    const rating =
-        Math.max(
+    const message = telviqoSafeString(
+        record.review_text ||
+        record.reviewText ||
+        record.message
+    ).trim();
+
+    return {
+        id: telviqoSafeString(
+            record.id
+        ).trim() || telviqoCreateID("review"),
+
+        name: name,
+
+        message: message,
+
+        rating: Math.max(
             1,
             Math.min(
                 5,
                 telviqoSafeNumber(
-                    data.rating,
+                    record.rating,
                     5
                 )
             )
-        );
+        ),
+
+        verified: telviqoSafeBoolean(
+            record.verified,
+            false
+        ),
+
+        visible: !hidden,
+
+        hidden: hidden,
+
+        createdAt: record.created_at ||
+            record.createdAt ||
+            telviqoCurrentDate(),
+
+        updatedAt: record.updated_at ||
+            record.updatedAt ||
+            telviqoCurrentDate()
+    };
+}
+
+
+function mergeTELVIQOReviewsFromSupabase(rows) {
+    const normalized =
+        (rows || [])
+            .map(normalizeTELVIQOReview)
+            .filter(Boolean);
+
+    const merged = [...TELVIQO_DATABASE.reviews];
+    const byID = new Map();
+
+    merged.forEach(function (review) {
+        byID.set(review.id, review);
+    });
+
+    normalized.forEach(function (review) {
+        byID.set(review.id, review);
+    });
+
+    TELVIQO_DATABASE.reviews =
+        Array.from(byID.values()).sort(function (a, b) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+
+    saveTELVIQODatabase("reviews");
+
+    window.dispatchEvent(
+        new CustomEvent("database:update", {
+            detail: {
+                collection: "reviews"
+            }
+        })
+    );
+}
+
+
+async function syncTELVIQOReviewsFromSupabase() {
+    const client = getSupabaseQuoteRequestsClient();
+
+    if (!client) {
+        console.error("TELVIQO review load failed: Supabase client is not configured.");
+        return;
+    }
+
+    const tableName = getSupabaseReviewsTable();
+
+    const sessionReady = await ensureSupabaseSession(client);
+
+    if (!sessionReady) {
+        console.warn("TELVIQO review load skipped because Supabase auth is unavailable.");
+        return;
+    }
+
+    const { data, error } = await client
+        .from(tableName)
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("TELVIQO review load failed for table " + tableName + ":", error);
+        return;
+    }
+
+    mergeTELVIQOReviewsFromSupabase(data || []);
+}
+
+
+function getTELVIQOReviews(
+    includeHidden = false
+) {
+    if (!TELVIQO_REVIEW_SYNC_IN_PROGRESS && getSupabaseQuoteRequestsClient()) {
+        TELVIQO_REVIEW_SYNC_IN_PROGRESS = true;
+
+        syncTELVIQOReviewsFromSupabase().finally(function () {
+            TELVIQO_REVIEW_SYNC_IN_PROGRESS = false;
+        });
+    }
+
+    const reviews = TELVIQO_DATABASE.reviews;
+
+    const filteredReviews =
+        includeHidden
+            ? reviews
+            : reviews.filter(function (review) {
+                return review.visible !== false;
+            });
+
+    return telviqoClone(filteredReviews);
+}
+
+
+async function createTELVIQOReview(data) {
+    if (!data || typeof data !== "object") {
+        return null;
+    }
+
+    const name = telviqoSafeString(data.name).trim() || "Anonymous";
+    const message = telviqoSafeString(data.message).trim();
+    const rating = Math.max(
+        1,
+        Math.min(
+            5,
+            telviqoSafeNumber(data.rating, 5)
+        )
+    );
 
     if (!message) {
         return null;
     }
 
     const review = {
-
-        id:
-            telviqoCreateID(
-                "review"
-            ),
-
-        name:
-            name,
-
-        rating:
-            rating,
-
-        message:
-            message,
-
-        verified:
-            telviqoSafeBoolean(
-                data.verified,
-                false
-            ),
-
-        visible:
-            telviqoSafeBoolean(
-                data.visible,
-                true
-            ),
-
-        createdAt:
-            telviqoCurrentDate(),
-
-        updatedAt:
-            telviqoCurrentDate()
+        id: telviqoCreateID("review"),
+        name: name,
+        rating: rating,
+        message: message,
+        verified: telviqoSafeBoolean(data.verified, false),
+        visible: telviqoSafeBoolean(data.visible, true),
+        createdAt: telviqoCurrentDate(),
+        updatedAt: telviqoCurrentDate()
     };
 
-    TELVIQO_DATABASE
-        .reviews
-        .unshift(
-            review
-        );
+    const client = getSupabaseQuoteRequestsClient();
+    let savedReview = null;
 
-    addTELVIQOActivity(
-        "New customer review received."
+    if (client) {
+        const payload = {
+            id: review.id,
+            customer_name: review.name,
+            rating: review.rating,
+            review_text: review.message,
+            verified: review.verified,
+            hidden: !review.visible,
+            created_at: review.createdAt,
+            updated_at: review.updatedAt
+        };
+
+        const tableName = getSupabaseReviewsTable();
+
+        const sessionReady = await ensureSupabaseSession(client);
+
+        if (!sessionReady) {
+            console.warn("TELVIQO review insert skipped because Supabase auth is unavailable.");
+            return null;
+        }
+
+        const { data: insertedRow, error } = await client
+            .from(tableName)
+            .insert(payload)
+            .select("*")
+            .single();
+
+        if (error) {
+            console.error("TELVIQO review insert failed for table " + tableName + ":", error, payload);
+            return null;
+        }
+
+        savedReview = normalizeTELVIQOReview(insertedRow || payload);
+    } else {
+        console.warn("TELVIQO review insert skipped because Supabase is unavailable.");
+        return null;
+    }
+
+    if (!savedReview) {
+        savedReview = normalizeTELVIQOReview(review);
+    }
+
+    if (!savedReview) {
+        return null;
+    }
+
+    TELVIQO_DATABASE.reviews.unshift(savedReview);
+
+    addTELVIQOActivity("New customer review received.");
+
+    saveTELVIQODatabase("reviews");
+
+    window.dispatchEvent(
+        new CustomEvent("database:update", {
+            detail: {
+                collection: "reviews"
+            }
+        })
     );
 
-    saveTELVIQODatabase(
-        "reviews"
-    );
-
-    return telviqoClone(
-        review
-    );
+    return telviqoClone(savedReview);
 }
 
 
@@ -1749,19 +1899,59 @@ function getSupabaseQuoteRequestsClient() {
 }
 
 
+async function ensureSupabaseSession(client) {
+    if (!client) {
+        return false;
+    }
+
+    try {
+        const { data: { session } = {}, error: sessionError } = await client.auth.getSession();
+
+        if (sessionError) {
+            console.warn("TELVIQO Supabase session lookup failed:", sessionError);
+        }
+
+        if (session) {
+            return true;
+        }
+
+        const { error: signInError } = await client.auth.signInAnonymously();
+
+        if (signInError) {
+            console.warn("TELVIQO Supabase anonymous sign-in failed:", signInError);
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        console.warn("TELVIQO Supabase auth setup failed:", error);
+        return false;
+    }
+}
+
+
 function normalizeTELVIQORequest(record) {
     if (!record || typeof record !== "object") {
         return null;
     }
 
+    const requestNumber = telviqoSafeString(
+        record.request_number ||
+        record.requestNumber ||
+        record.request_id ||
+        record.requestId ||
+        record.id
+    ).trim();
+
     return {
-        id:
-            telviqoSafeString(
-                record.id ||
-                record.request_id ||
-                record.requestId
-            ).trim() ||
+        id: telviqoSafeString(
+            record.id ||
+            record.request_id ||
+            record.requestId
+        ).trim() ||
             telviqoCreateRequestID(),
+
+        requestNumber: requestNumber || telviqoCreateRequestID(),
 
         customerName:
             telviqoSafeString(
@@ -1915,10 +2105,18 @@ async function syncTELVIQORequestsFromSupabase() {
     const tableName =
         getSupabaseQuoteRequestsTable();
 
+    const sessionReady = await ensureSupabaseSession(client);
+
+    if (!sessionReady) {
+        console.warn("TELVIQO quote request load skipped because Supabase auth is unavailable.");
+        return;
+    }
+
     const { data, error } =
         await client
             .from(tableName)
-            .select("*");
+            .select("*")
+            .order("created_at", { ascending: false });
 
     if (error) {
         console.error(
@@ -2027,10 +2225,13 @@ async function createTELVIQORequest(data) {
         return null;
     }
 
+    const requestNumber = telviqoCreateRequestID();
+
     const request = {
 
-        id:
-            telviqoCreateRequestID(),
+        id: requestNumber,
+
+        requestNumber: requestNumber,
 
         customerName:
             customerName,
@@ -2091,23 +2292,27 @@ async function createTELVIQORequest(data) {
     if (client) {
         const payload = {
             id: request.id,
+            request_number: request.requestNumber,
             customer_name: request.customerName,
-            email: request.email,
-            phone: request.phone,
+            phone_number: request.phone,
             device_type: request.deviceType,
             device_model: request.deviceModel,
             service: request.service,
-            preferred_language: request.preferredLanguage,
             problem_description: request.problemDescription,
-            authorized_device: request.authorizedDevice,
             status: request.status,
-            admin_notes: request.adminNotes,
             created_at: request.createdAt,
             updated_at: request.updatedAt
         };
 
         const tableName =
             getSupabaseQuoteRequestsTable();
+
+        const sessionReady = await ensureSupabaseSession(client);
+
+        if (!sessionReady) {
+            console.warn("TELVIQO quote request insert skipped because Supabase auth is unavailable.");
+            return null;
+        }
 
         const { data, error } =
             await client
@@ -2123,16 +2328,18 @@ async function createTELVIQORequest(data) {
                 error,
                 payload
             );
-        } else {
-            savedRequest =
-                normalizeTELVIQORequest(
-                    data || payload
-                );
+            return null;
         }
+
+        savedRequest =
+            normalizeTELVIQORequest(
+                data || payload
+            );
     } else {
         console.warn(
-            "TELVIQO quote request saved locally because Supabase is unavailable."
+            "TELVIQO quote request insert skipped because Supabase is unavailable."
         );
+        return null;
     }
 
     if (!savedRequest) {
