@@ -85,7 +85,7 @@ const TELVIQO_TRANSLATIONS = {
             statsAge: "YEARS OLD",
             experience: "EXPERIENCE",
             founder: "FOUNDER",
-            founderAge: "Age 15",
+            founderAge: "",
             scroll: "SCROLL"
         },
         about: {

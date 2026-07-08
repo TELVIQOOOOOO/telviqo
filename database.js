@@ -149,7 +149,7 @@ const TELVIQO_DEFAULT_DATABASE = {
             "Building my future one device at a time.",
 
         aboutText:
-            "My name is Danylo Taran. I am 15 years old and I am building TELVIQO from Antelope, California. I started working with phones and technology because I wanted to learn how devices work and develop real repair experience.\n\nI have already worked on more than 30 devices. I repair phones and tablets and provide device unlocking services when the customer is authorized to request service for the device.\n\nTELVIQO is currently home-based. My goal is to keep learning, earning, and building experience so that when I am 18 I can work toward opening my own technology store.",
+            "My name is Danylo Taran. I am building TELVIQO from Antelope, California. I started working with phones and technology because I wanted to learn how devices work and develop real repair experience.\n\nI have already worked on more than 30 devices. I repair phones and tablets and provide device unlocking services when the customer is authorized to request service for the device.\n\nTELVIQO is currently home-based. My goal is to keep learning, earning, and building experience so that as I work toward opening my own technology business.",
 
         ownerCardTitle:
             "Danylo Taran",
@@ -158,7 +158,7 @@ const TELVIQO_DEFAULT_DATABASE = {
             "Founder / Owner",
 
         ownerCardAge:
-            "15 years old",
+            "",
 
         ownerCardLocation:
             "Antelope, California",
