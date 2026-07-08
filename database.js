@@ -2383,84 +2383,135 @@ async function createTELVIQORequest(data) {
 }
 
 
-function updateTELVIQORequest(
-    id,
-    updates
-) {
-    const index =
-        TELVIQO_DATABASE
-            .requests
-            .findIndex(
-                function (request) {
-                    return request.id === id;
-                }
-            );
+async function updateTELVIQORequest(id, updates) {
+    const index = TELVIQO_DATABASE.requests.findIndex(function (request) {
+        return request.id === id;
+    });
 
     if (index === -1) {
         return false;
     }
 
-    TELVIQO_DATABASE
-        .requests[index] = {
+    const client = getSupabaseQuoteRequestsClient();
 
-            ...TELVIQO_DATABASE
-                .requests[index],
+    if (!client) {
+        console.error("TELVIQO quote update failed: Supabase is unavailable.");
+        return false;
+    }
 
-            ...updates,
+    const sessionReady = await ensureSupabaseSession(client);
 
-            id:
-                TELVIQO_DATABASE
-                    .requests[index]
-                    .id,
+    if (!sessionReady) {
+        console.error("TELVIQO quote update failed: Supabase auth is unavailable.");
+        return false;
+    }
 
-            updatedAt:
-                telviqoCurrentDate()
-        };
+    const updatedAt = telviqoCurrentDate();
+
+    const payload = {
+        updated_at: updatedAt
+    };
+
+    if (Object.prototype.hasOwnProperty.call(updates, "status")) {
+        payload.status = updates.status;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(updates, "adminNotes")) {
+        payload.admin_notes = updates.adminNotes;
+    }
+
+    const { data, error } = await client
+        .from(getSupabaseQuoteRequestsTable())
+        .update(payload)
+        .eq("id", id)
+        .select("*")
+        .single();
+
+    if (error) {
+        console.error("TELVIQO quote update failed:", error, payload);
+        return false;
+    }
+
+    const savedRequest = normalizeTELVIQORequest(data);
+
+    if (!savedRequest) {
+        console.error("TELVIQO quote update failed: no updated request returned.");
+        return false;
+    }
+
+    TELVIQO_DATABASE.requests[index] = savedRequest;
 
     addTELVIQOActivity(
-        "Quote request " +
-        id +
-        " updated."
+        "Quote request " + id + " updated."
     );
 
-    return saveTELVIQODatabase(
-        "requests"
+    saveTELVIQODatabase("requests");
+
+    window.dispatchEvent(
+        new CustomEvent("database:update", {
+            detail: {
+                collection: "requests"
+            }
+        })
     );
+
+    return true;
 }
 
 
-function deleteTELVIQORequest(id) {
-    const exists =
-        TELVIQO_DATABASE
-            .requests
-            .some(
-                function (request) {
-                    return request.id === id;
-                }
-            );
+async function deleteTELVIQORequest(id) {
+    const client = getSupabaseQuoteRequestsClient();
 
-    if (!exists) {
+    if (!client) {
+        console.error("TELVIQO quote delete failed: Supabase is unavailable.");
+        return false;
+    }
+
+    const sessionReady = await ensureSupabaseSession(client);
+
+    if (!sessionReady) {
+        console.error("TELVIQO quote delete failed: Supabase auth is unavailable.");
+        return false;
+    }
+
+    const { data, error } = await client
+        .from(getSupabaseQuoteRequestsTable())
+        .delete()
+        .eq("id", id)
+        .select("id");
+
+    if (error) {
+        console.error("TELVIQO quote delete failed:", error);
+        return false;
+    }
+
+    if (!Array.isArray(data) || !data.some(function (row) {
+        return row.id === id;
+    })) {
+        console.error("TELVIQO quote delete failed: Supabase did not return deleted request.");
         return false;
     }
 
     TELVIQO_DATABASE.requests =
-        TELVIQO_DATABASE
-            .requests
-            .filter(
-                function (request) {
-                    return request.id !== id;
-                }
-            );
+        TELVIQO_DATABASE.requests.filter(function (request) {
+            return request.id !== id;
+        });
 
     addTELVIQOActivity(
-        "Quote request " +
-        id +
-        " deleted."
+        "Quote request " + id + " deleted."
     );
 
-    return saveTELVIQODatabase(
-        "requests"
+    saveTELVIQODatabase("requests");
+
+    window.dispatchEvent(
+        new CustomEvent("database:update", {
+            detail: {
+                collection: "requests"
+            }
+        })
     );
+
+    return true;
 }
 
 

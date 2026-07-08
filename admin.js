@@ -2872,86 +2872,96 @@ function renderRequestDetails(request) {
 
 
 function initializeRequestDetailButtons() {
-    const database =
-        getAdminDatabase();
+    const database = getAdminDatabase();
 
     if (!database) {
         return;
     }
 
-    const saveButton =
-        adminGet("[data-save-request]");
+    const saveButton = adminGet("[data-save-request]");
 
     if (saveButton) {
         saveButton.addEventListener(
             "click",
             async function () {
-                if (
-                    typeof database.updateRequest ===
-                    "function"
-                ) {
-                    await database.updateRequest(
-                        saveButton.dataset.saveRequest,
-                        {
-                            status:
-                                adminGet(
-                                    "#requestStatus"
-                                )?.value,
-
-                            adminNotes:
-                                adminGet(
-                                    "#requestAdminNotes"
-                                )?.value || ""
-                        }
-                    );
+                if (typeof database.updateRequest !== "function") {
+                    console.error("TELVIQO request update function is unavailable.");
+                    showAdminToast("Could not save request.");
+                    return;
                 }
 
-                closeAdminModal(
-                    "requestModal"
-                );
+                saveButton.disabled = true;
 
-                refreshAllAdminData();
-                showAdminToast(
-                    "Request saved."
-                );
+                try {
+                    const success = await database.updateRequest(
+                        saveButton.dataset.saveRequest,
+                        {
+                            status: adminGet("#requestStatus")?.value,
+                            adminNotes: adminGet("#requestAdminNotes")?.value || ""
+                        }
+                    );
+
+                    if (!success) {
+                        console.error("TELVIQO request update returned failure.");
+                        showAdminToast("Could not save request.");
+                        return;
+                    }
+
+                    closeAdminModal("requestModal");
+                    refreshAllAdminData();
+                    showAdminToast("Request saved.");
+                } catch (error) {
+                    console.error("TELVIQO request update failed:", error);
+                    showAdminToast("Could not save request.");
+                } finally {
+                    saveButton.disabled = false;
+                }
             }
         );
     }
 
-    const deleteButton =
-        adminGet("[data-delete-request]");
+    const deleteButton = adminGet("[data-delete-request]");
 
     if (deleteButton) {
         deleteButton.addEventListener(
             "click",
             async function () {
-                const confirmed =
-                    window.confirm(
-                        "Delete this quote request?"
-                    );
+                const confirmed = window.confirm(
+                    "Delete this quote request?"
+                );
 
                 if (!confirmed) {
                     return;
                 }
 
-                if (
-                    typeof database.deleteRequest ===
-                    "function"
-                ) {
-                    await database.deleteRequest(
-                        deleteButton.dataset
-                            .deleteRequest
-                    );
+                if (typeof database.deleteRequest !== "function") {
+                    console.error("TELVIQO request delete function is unavailable.");
+                    showAdminToast("Could not delete request.");
+                    return;
                 }
 
-                closeAdminModal(
-                    "requestModal"
-                );
+                deleteButton.disabled = true;
 
-                refreshAllAdminData();
-                showAdminToast(
-                    "Request deleted."
-                );
+                try {
+                    const success = await database.deleteRequest(
+                        deleteButton.dataset.deleteRequest
+                    );
+
+                    if (!success) {
+                        console.error("TELVIQO request delete returned failure.");
+                        showAdminToast("Could not delete request.");
+                        return;
+                    }
+
+                    closeAdminModal("requestModal");
+                    refreshAllAdminData();
+                    showAdminToast("Request deleted.");
+                } catch (error) {
+                    console.error("TELVIQO request delete failed:", error);
+                    showAdminToast("Could not delete request.");
+                } finally {
+                    deleteButton.disabled = false;
+                }
             }
         );
     }
