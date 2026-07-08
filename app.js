@@ -113,7 +113,7 @@ const TELVIQO_TRANSLATIONS = {
         review: {
             nameLabel: "NAME (OPTIONAL)",
             ratingLabel: "RATING",
-            messageLabel: "YOUR REVIEW",
+            messageLabel: "YOUR REVIEW (OPTIONAL)",
             submit: "Submit Review",
             placeholderName: "Your name",
             placeholderMessage: "Tell people about your experience...",
@@ -273,7 +273,7 @@ const TELVIQO_TRANSLATIONS = {
         review: {
             nameLabel: "ИМЯ (НЕОБЯЗАТЕЛЬНО)",
             ratingLabel: "ОЦЕНКА",
-            messageLabel: "ВАШ ОТЗЫВ",
+            messageLabel: "ВАШ ОТЗЫВ (НЕОБЯЗАТЕЛЬНО)",
             submit: "Отправить отзыв",
             placeholderName: "Ваше имя",
             placeholderMessage: "Расскажите о своём опыте...",
@@ -427,7 +427,7 @@ const TELVIQO_TRANSLATIONS = {
         review: {
             nameLabel: "ІМ'Я (НЕОБОВ'ЯЗКОВО)",
             ratingLabel: "ОЦІНКА",
-            messageLabel: "ВАШ ВІДГУК",
+            messageLabel: "ВАШ ВІДГУК (НЕОБОВ’ЯЗКОВО)",
             submit: "Надіслати відгук",
             placeholderName: "Ваше ім'я",
             placeholderMessage: "Розкажіть про свій досвід...",
@@ -581,7 +581,7 @@ const TELVIQO_TRANSLATIONS = {
         review: {
             nameLabel: "NUME (OPȚIONAL)",
             ratingLabel: "NOTĂ",
-            messageLabel: "RECENZIA TA",
+            messageLabel: "RECENZIA TA (OPȚIONAL)",
             submit: "Trimite recenzia",
             placeholderName: "Numele tău",
             placeholderMessage: "Spune despre experiența ta...",
