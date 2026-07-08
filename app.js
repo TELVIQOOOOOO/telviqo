@@ -82,10 +82,10 @@ const TELVIQO_TRANSLATIONS = {
             location: "Antelope, California",
             statsDevices: "DEVICES WORKED ON",
             statsLanguages: "LANGUAGES",
-            statsAge: "YEARS OLD",
+
             experience: "EXPERIENCE",
             founder: "FOUNDER",
-            founderAge: "",
+
             scroll: "SCROLL"
         },
         about: {
@@ -242,10 +242,10 @@ const TELVIQO_TRANSLATIONS = {
             location: "Антелоуп, Калифорния",
             statsDevices: "УСТРОЙСТВ В РАБОТЕ",
             statsLanguages: "ЯЗЫКИ",
-            statsAge: "ЛЕТ",
+
             experience: "ОПЫТ",
             founder: "ОСНОВАТЕЛЬ",
-            founderAge: "15 лет",
+
             scroll: "ПРОКРУТКА"
         },
         about: {
@@ -396,10 +396,10 @@ const TELVIQO_TRANSLATIONS = {
             location: "Антелоуп, Каліфорнія",
             statsDevices: "ПРИСТРОЇВ У РОБОТІ",
             statsLanguages: "МОВИ",
-            statsAge: "РОКІВ",
+
             experience: "ДОСВІД",
             founder: "ЗАСНОВНИК",
-            founderAge: "15 років",
+
             scroll: "ПРОКРУТКА"
         },
         about: {
@@ -550,10 +550,10 @@ const TELVIQO_TRANSLATIONS = {
             location: "Antelope, California",
             statsDevices: "APARATE LUCRATE",
             statsLanguages: "LIMBI",
-            statsAge: "ANI",
+
             experience: "EXPERIENȚĂ",
             founder: "FONDATOR",
-            founderAge: "15 ani",
+
             scroll: "DERULARE"
         },
         about: {
