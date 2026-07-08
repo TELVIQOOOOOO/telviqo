@@ -1714,7 +1714,7 @@ async function createTELVIQOReview(data) {
             id: review.id,
             customer_name: review.name,
             rating: review.rating,
-            review_text: review.message || null,
+            review_text: review.message,
             verified: review.verified,
             hidden: !review.visible,
             created_at: review.createdAt,
