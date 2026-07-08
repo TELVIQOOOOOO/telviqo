@@ -1694,9 +1694,6 @@ async function createTELVIQOReview(data) {
         )
     );
 
-    if (!message) {
-        return null;
-    }
 
     const review = {
         id: telviqoCreateID("review"),
@@ -2474,21 +2471,13 @@ async function deleteTELVIQORequest(id) {
         return false;
     }
 
-    const { data, error } = await client
+    const { error } = await client
         .from(getSupabaseQuoteRequestsTable())
         .delete()
-        .eq("id", id)
-        .select("id");
+        .eq("id", id);
 
     if (error) {
         console.error("TELVIQO quote delete failed:", error);
-        return false;
-    }
-
-    if (!Array.isArray(data) || !data.some(function (row) {
-        return row.id === id;
-    })) {
-        console.error("TELVIQO quote delete failed: Supabase did not return deleted request.");
         return false;
     }
 
