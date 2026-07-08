@@ -1966,10 +1966,6 @@ async function submitReviewForm(form) {
     const language = getCurrentWebsiteLanguage();
     const dictionary = TELVIQO_TRANSLATIONS[language] || TELVIQO_TRANSLATIONS.en;
 
-    if (message.length < 10) {
-        showWebsiteToast(dictionary.notifications.reviewLength, "error");
-        return;
-    }
 
     if (!rating || rating < 1 || rating > 5) {
         showWebsiteToast(dictionary.notifications.reviewRating, "error");
