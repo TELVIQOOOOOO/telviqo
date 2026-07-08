@@ -1723,13 +1723,6 @@ async function createTELVIQOReview(data) {
 
         const tableName = getSupabaseReviewsTable();
 
-        const sessionReady = await ensureSupabaseSession(client);
-
-        if (!sessionReady) {
-            console.warn("TELVIQO review insert skipped because Supabase auth is unavailable.");
-            return null;
-        }
-
         const { data: insertedRow, error } = await client
             .from(tableName)
             .insert(payload)
