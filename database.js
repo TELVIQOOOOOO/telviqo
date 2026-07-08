@@ -1817,38 +1817,36 @@ function updateTELVIQOReview(
 }
 
 
-function deleteTELVIQOReview(id) {
-    const exists =
-        TELVIQO_DATABASE
-            .reviews
-            .some(
-                function (review) {
-                    return review.id === id;
-                }
-            );
+async function deleteTELVIQOReview(id) {
+    const client = getSupabaseQuoteRequestsClient();
 
-    if (!exists) {
-        return false;
+    if (client) {
+        const tableName = getSupabaseReviewsTable();
+
+        const { error } = await client
+            .from(tableName)
+            .delete()
+            .eq("id", id);
+
+        if (error) {
+            console.error("TELVIQO review delete failed:", error);
+            return false;
+        }
     }
 
     TELVIQO_DATABASE.reviews =
-        TELVIQO_DATABASE
-            .reviews
-            .filter(
-                function (review) {
-                    return review.id !== id;
-                }
-            );
+        TELVIQO_DATABASE.reviews.filter(function (review) {
+            return review.id !== id;
+        });
 
     addTELVIQOActivity(
         "Customer review deleted."
     );
 
-    return saveTELVIQODatabase(
-        "reviews"
-    );
-}
+    saveTELVIQODatabase("reviews");
 
+    return true;
+}
 
 /* ============================================================
    QUOTE REQUESTS
