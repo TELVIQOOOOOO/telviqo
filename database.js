@@ -1634,13 +1634,6 @@ async function syncTELVIQOReviewsFromSupabase() {
 
     const tableName = getSupabaseReviewsTable();
 
-    const sessionReady = await ensureSupabaseSession(client);
-
-    if (!sessionReady) {
-        console.warn("TELVIQO review load skipped because Supabase auth is unavailable.");
-        return;
-    }
-
     const { data, error } = await client
         .from(tableName)
         .select("*")
